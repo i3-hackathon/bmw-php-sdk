@@ -1,6 +1,9 @@
 {
-	"name": "mojio/mojio-php-client",
-	"type": "library",
+	"name": "mojio/mojio",
+    "type": "library",
+    "description": "PHP client to login and access the Mojio API",
+    "keywords": ["api","mojio","client","guzzle"],
+    "homepage": "http://github.com/mojio/mojio-php-client",
     "require": {
         "php": ">=5.3.3",
         "guzzle/guzzle": "~3.7.0"
