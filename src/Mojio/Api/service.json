@@ -1,0 +1,289 @@
+{
+    "name": "Mojio",
+    "apiVersion": "2013-07-03",
+    "description": "Mojio API",
+    "operations": {
+    	"GetEntity": {
+        	"httpMethod": "GET",
+            "uri": "{type}/{id}/{action}",
+            "summary": "Lookup a token",
+            "parameters": {
+            	"type": {
+            		"location": "uri",
+            		"type": "string",
+            		"enum": [
+            			"mojios","users","trips","events",""
+            		],
+            		"required": true
+            	},
+                "id": {
+                    "location": "uri",
+                    "description": "ID",
+                    "required": true
+                },
+            	"action": {
+            		"location": "uri",
+            		"type": "string"
+            	}
+            }
+        },
+        "GetToken": {
+        	"extends": "GetEntity",
+            "parameters": {
+                "type": {
+                    "location": "uri",
+                    "default": "login",
+                    "required": true
+                }
+            }
+        },
+        "GetUser": {
+        	"extends": "GetEntity",
+            "parameters": {
+                "type": {
+                    "location": "uri",
+                    "default": "users",
+                    "required": true
+                }
+            }
+        },
+        "GetMojio": {
+        	"extends": "GetEntity",
+            "parameters": {
+                "type": {
+                    "location": "uri",
+                    "default": "mojios",
+                    "required": true
+                }
+            }
+        },
+        "GetOrder": {
+        	"extends": "GetEntity",
+            "parameters": {
+                "type": {
+                    "location": "uri",
+                    "default": "orders",
+                    "required": true
+                }
+            }
+        },
+        "GetTrip": {
+        	"extends": "GetEntity",
+            "parameters": {
+                "type": {
+                    "location": "uri",
+                    "default": "trips",
+                    "required": true
+                }
+            }
+        },
+        "GetEvent": {
+        	"extends": "GetEntity",
+            "parameters": {
+                "type": {
+                    "location": "uri",
+                    "default": "events",
+                    "required": true
+                }
+            }
+        },
+    	"Begin": {
+    		"httpMethod": "GET",
+            "summary": "Gets a list of users",
+            "uri": "{type}/{appId}/begin",
+            "class": "\\Mojio\\Api\\Command\\GetEntity",
+            "parameters": {
+            	"type": {
+            		"location": "uri",
+            		"type": "string",
+            		"default": "login"
+            	},
+            	"appId": {
+            		"location": "uri",
+            		"type": "string",
+            		"required": true
+            	},
+            	"secretKey": {
+            		"location": "query",
+            		"type": "string",
+            		"required": true
+           		},
+            	"userOrEmail": {
+            		"location": "query",
+            		"type": "string"
+           		},
+            	"password": {
+            		"location": "query",
+            		"type": "string"
+           		},
+           		"minutes": {
+            		"location": "query",
+            		"type": "integer",
+            		"default": 10
+           		}
+            }
+    	},
+        "Login": {
+        	"httpMethod": "GET",
+        	"uri": "{type}/{username}/setuser",
+        	"summary": "Lookup a token",
+            "class": "\\Mojio\\Api\\Command\\GetEntity",
+            "parameters": {
+            	"type": {
+            		"type": "string",
+            		"location": "uri",
+            		"default": "login"
+            	},
+            	"username": {
+            		"location": "uri",
+            		"type": "string",
+            		"required": true
+            	},
+            	"password": {
+            		"location": "query",
+            		"type": "string",
+            		"required": true
+            	}
+            }
+        },
+        "SaveEntity": {
+        	"httpMethod": "PUT",
+            "uri": "{type}/{id}/{action}",
+            "summary": "Update a new entity",
+            "class": "\\Mojio\\Api\\Command\\SaveEntity",
+            "parameters": {
+            	"type": {
+            		"location": "uri",
+            		"type": "string",
+            		"enum": [
+            			"mojios","users","trips","events",""
+            		],
+            		"required": true
+            	},
+                "id": {
+                    "location": "uri",
+                    "description": "Token ID",
+                    "required": true
+                }
+            }
+        },
+        "NewEntity": {
+        	"httpMethod": "POST",
+            "uri": "{type}/{id}/{action}",
+            "summary": "Create and save a new entity",
+            "class": "\\Mojio\\Api\\Command\\SaveEntity",
+            "parameters": {
+            	"type": {
+            		"location": "uri",
+            		"type": "string",
+            		"enum": [
+            			"mojios","users","trips","events",""
+            		],
+            		"required": true
+            	},
+                "id": {
+                    "location": "uri",
+                    "description": "Optional ID"
+                },
+                "action": {
+                	"location": "uri",
+                	"description": "Optional Action"
+                }
+            }
+        },
+        "GetEntity": {
+        	"httpMethod": "GET",
+            "uri": "{type}/{id}/{action}",
+            "summary": "Get a specific entity",
+            "parameters": {
+            	"type": {
+            		"location": "uri",
+            		"type": "string",
+            		"enum": [
+            			"mojios","users","trips","events",""
+            		],
+            		"required": true
+            	},
+                "id": {
+                    "location": "uri",
+                    "description": "Token ID",
+                    "required": true
+                },
+            	"action": {
+            		"location": "uri",
+            		"type": "string"
+            	}
+            }
+        },
+        "GetList": {
+        	"httpMethod": "GET",
+            "uri": "{type}/{id}/{action}",
+            "summary": "Gets a list of entities",
+            "class": "\\Mojio\\Api\\Command\\GetList",
+            "parameters": {
+            	"type": {
+            		"location": "uri",
+            		"type": "string",
+            		"enum": [
+            			"mojios","users","trips","events",""
+            		],
+            		"required": true
+            	},
+                "id": {
+                    "location": "uri",
+                    "description": "Token ID",
+                    "required": false
+                },
+            	"action": {
+            		"location": "uri",
+            		"type": "string",
+            		"required": false
+            	},
+            	"page": {
+            		"location": "query",
+            		"type": "integer",
+            		"default": 1
+           		},
+           		"pageSize": {
+            		"location": "query",
+            		"type": "integer",
+            		"default": 10
+           		},
+           		"sortBy": {
+            		"location": "query",
+            		"type": "string"
+           		},
+           		"desc": {
+           			"location": "query",
+           			"type": "boolean"
+           		}
+            }
+        },
+        "DeleteEntity": {
+            "httpMethod": "DELETE",
+            "uri": "{type}/{id}/{action}",
+            "summary": "Deletes an entity",
+            "class": "\\Mojio\\Api\\Command\\DeleteEntity",
+            "parameters": {
+                "type": {
+            		"location": "uri",
+            		"type": "string",
+            		"enum": [
+            			"mojios","users","trips","events",""
+            		],
+            		"required": true
+            	},
+                "id": {
+                    "location": "uri",
+                    "description": "Token ID",
+                    "required": false
+                },
+            	"action": {
+            		"location": "uri",
+            		"type": "string",
+            		"required": false
+            	}
+            }
+        }
+    }
+}
