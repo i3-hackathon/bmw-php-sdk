@@ -3,8 +3,9 @@
 namespace Mojio\Api\Command;
 
 use Mojio\Api\Model\Entity;
+use Mojio\Api\Exception\ResponseException;
 
-class SaveEntity extends GetEntity
+class SetStored extends GetEntity
 {
 	protected $jsonContentType = 'application/json';
 	
@@ -14,26 +15,38 @@ class SaveEntity extends GetEntity
 	protected function validate()
 	{
 		$this->validateEntity();
-			
+		
 		parent::validate();
 	}
 	
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function build()
 	{
 		parent::build();
 		
-		$entity = $this->get('entity');
-		if( $entity )
+		$value = $this->get('value');
+		if( $value )
 		{
-			if( $entity instanceof Entity)
-				$entity = $entity->toArray();
-			
 			$request = $this->getRequest();
-			$request->setBody(json_encode($entity));
+			$request->setBody(json_encode($value));
 			
 			if ($this->jsonContentType && !$request->hasHeader('Content-Type')) {
                 $request->setHeader('Content-Type', $this->jsonContentType);
             }
+		}
+	}
+	
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function process()
+	{
+		if ($this->getResponse()->isSuccessful()) {
+			$this->result = true;
+		}else{
+			throw new ResponseException( $this->getResponse() );
 		}
 	}
 }

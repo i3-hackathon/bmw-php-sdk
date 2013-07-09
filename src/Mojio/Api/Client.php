@@ -9,13 +9,16 @@ use Guzzle\Common\Event;
 
 class Client extends \Guzzle\Service\Client
 {
+	const LIVE = "https://developer.moj.io/v1";
+	const SANDBOX = "http://sandbox.developer.moj.io/v1";
+	
 	/**
-	 * @var string AWS access key ID
+	 * @var string Mojio App ID
 	 */
 	protected $appId;
 	
 	/**
-	 * @var string AWS secret key
+	 * @var string Mojio App secret key
 	 */
 	protected $secretKey;
 	
@@ -30,14 +33,13 @@ class Client extends \Guzzle\Service\Client
 	public $token;
 	
 	/**
-	 * Factory method to create a new S3 client
+	 * Factory method to create a new Mojio client
 	 *
 	 * @param array|Collection $config Configuration data. Array keys:
-	 *    base_url - Base URL of web service.  Default: {{scheme}}://{{region}}/
-	 *    scheme - Set to http or https.  Defaults to http
-	 *    region - AWS region.  Defaults to s3.amazonaws.com
-	 *    access_key - AWS access key ID.  Set to sign requests.
-	 *    secret_key - AWS secret access key. Set to sign requests.
+	 *    base_url - Base URL of web service.  Default: {{scheme}}://developer.moj.io/{{version}}
+	 *    app_id - Mojio App ID
+	 *    secret_key - Mojio App Secret Key
+	 *    token - Optional Token ID
 	 *
 	 * @return S3Client
 	 */
@@ -64,7 +66,7 @@ class Client extends \Guzzle\Service\Client
 			try {
 				$token = $client->getToken(array('id' => $tokenId) );
 
-				$client->token = $token->get('_id');
+				$client->token;
 			}catch( GuzzleException $e ){
 			}
 		
@@ -75,9 +77,7 @@ class Client extends \Guzzle\Service\Client
 					'secretKey' => $config->get('secret_key')
 				));
 				
-				var_dump( $token );
-				
-				$client->token = $token['_id'];
+				$client->token = $token;
 			}catch( GuzzleException $e ){
 				var_dump( $e->getMessage() );
 				die('could not connect');
@@ -85,11 +85,16 @@ class Client extends \Guzzle\Service\Client
 		
 		$client->getEventDispatcher()->addListener('request.before_send', function( Event $event ) {
 			$request = $event['request'];
-			$token = $request->getClient()->token;
+			$token = $request->getClient()->getTokenId();
 			
 			$request->setHeader('MojioApiToken',$token);
 		});
 		
 		return $client;
+	}
+	
+	public function getTokenId()
+	{
+		return $this->token ? $this->token->getId() : null;
 	}
 }

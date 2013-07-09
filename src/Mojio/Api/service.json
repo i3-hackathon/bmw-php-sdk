@@ -3,10 +3,10 @@
     "apiVersion": "2013-07-03",
     "description": "Mojio API",
     "operations": {
-    	"GetEntity": {
+        "getEntity": {
         	"httpMethod": "GET",
             "uri": "{type}/{id}/{action}",
-            "summary": "Lookup a token",
+            "summary": "Get a specific entity",
             "parameters": {
             	"type": {
             		"location": "uri",
@@ -18,7 +18,7 @@
             	},
                 "id": {
                     "location": "uri",
-                    "description": "ID",
+                    "description": "Token ID",
                     "required": true
                 },
             	"action": {
@@ -27,8 +27,8 @@
             	}
             }
         },
-        "GetToken": {
-        	"extends": "GetEntity",
+        "getToken": {
+        	"extends": "getEntity",
             "parameters": {
                 "type": {
                     "location": "uri",
@@ -37,8 +37,8 @@
                 }
             }
         },
-        "GetUser": {
-        	"extends": "GetEntity",
+        "getUser": {
+        	"extends": "getEntity",
             "parameters": {
                 "type": {
                     "location": "uri",
@@ -47,8 +47,8 @@
                 }
             }
         },
-        "GetMojio": {
-        	"extends": "GetEntity",
+        "getMojio": {
+        	"extends": "getEntity",
             "parameters": {
                 "type": {
                     "location": "uri",
@@ -57,8 +57,11 @@
                 }
             }
         },
-        "GetOrder": {
-        	"extends": "GetEntity",
+        "getDevice": {
+        	"extends": "getMojio"
+        },
+        "getOrder": {
+        	"extends": "getEntity",
             "parameters": {
                 "type": {
                     "location": "uri",
@@ -67,8 +70,11 @@
                 }
             }
         },
-        "GetTrip": {
-        	"extends": "GetEntity",
+        "getInvoice": {
+        	"extends": "getOrder"
+        },
+        "getTrip": {
+        	"extends": "getEntity",
             "parameters": {
                 "type": {
                     "location": "uri",
@@ -77,8 +83,8 @@
                 }
             }
         },
-        "GetEvent": {
-        	"extends": "GetEntity",
+        "getEvent": {
+        	"extends": "getEntity",
             "parameters": {
                 "type": {
                     "location": "uri",
@@ -87,7 +93,37 @@
                 }
             }
         },
-    	"Begin": {
+        "getStored": {
+        	"extends": "getEntity",
+        	"httpMethod": "GET",
+            "uri": "{type}/{id}/{action}/{key}",
+            "class": "\\Mojio\\Api\\Command\\GetStored",
+            "parameters": {
+                "action": {
+                    "location": "uri",
+                    "default": "store",
+                    "required": true
+                },
+                "key": {
+                	"location": "uri",
+                	"type": "string",
+                	"required": true
+                }
+            }
+        },
+        "setStored": {
+        	"extends": "getStore",
+            "class": "\\Mojio\\Api\\Command\\SetStored",
+        	"httpMethod": "PUT",
+            "parameters": {
+                "value": {
+                	"type": "string",
+                	"required": "true",
+                	"location": "json"
+                }
+            }
+        },
+    	"begin": {
     		"httpMethod": "GET",
             "summary": "Gets a list of users",
             "uri": "{type}/{appId}/begin",
@@ -123,7 +159,7 @@
            		}
             }
     	},
-        "Login": {
+        "login": {
         	"httpMethod": "GET",
         	"uri": "{type}/{username}/setuser",
         	"summary": "Lookup a token",
@@ -146,7 +182,7 @@
             	}
             }
         },
-        "SaveEntity": {
+        "saveEntity": {
         	"httpMethod": "PUT",
             "uri": "{type}/{id}/{action}",
             "summary": "Update a new entity",
@@ -167,7 +203,7 @@
                 }
             }
         },
-        "NewEntity": {
+        "newEntity": {
         	"httpMethod": "POST",
             "uri": "{type}/{id}/{action}",
             "summary": "Create and save a new entity",
@@ -191,31 +227,7 @@
                 }
             }
         },
-        "GetEntity": {
-        	"httpMethod": "GET",
-            "uri": "{type}/{id}/{action}",
-            "summary": "Get a specific entity",
-            "parameters": {
-            	"type": {
-            		"location": "uri",
-            		"type": "string",
-            		"enum": [
-            			"mojios","users","trips","events",""
-            		],
-            		"required": true
-            	},
-                "id": {
-                    "location": "uri",
-                    "description": "Token ID",
-                    "required": true
-                },
-            	"action": {
-            		"location": "uri",
-            		"type": "string"
-            	}
-            }
-        },
-        "GetList": {
+        "getList": {
         	"httpMethod": "GET",
             "uri": "{type}/{id}/{action}",
             "summary": "Gets a list of entities",
@@ -259,7 +271,83 @@
            		}
             }
         },
-        "DeleteEntity": {
+        "getUsers": {
+        	"extends": "getList",
+        	"parameters": {
+                "type": {
+                    "location": "uri",
+                    "default": "users",
+                    "required": true
+                }
+            }
+        },
+        "getTrips": {
+        	"extends": "getList",
+        	"parameters": {
+                "type": {
+                    "location": "uri",
+                    "default": "trips",
+                    "required": true
+                }
+            }
+        },
+        "getOrders": {
+        	"extends": "getList",
+        	"parameters": {
+                "type": {
+                    "location": "uri",
+                    "default": "orders",
+                    "required": true
+                }
+            }
+        },
+        "getInvoices": {
+        	"extends": "getOrders"
+        },
+        "getMojios": {
+        	"extends": "getList",
+        	"parameters": {
+                "type": {
+                    "location": "uri",
+                    "default": "mojios",
+                    "required": true
+                }
+            }
+        },
+        "getDevices": {
+        	"extends": "getMojios"
+        },
+        "getProducts": {
+        	"extends": "getList",
+        	"parameters": {
+                "type": {
+                    "location": "uri",
+                    "default": "products",
+                    "required": true
+                }
+            }
+        },
+        "getEvents": {
+        	"extends": "getList",
+        	"parameters": {
+                "type": {
+                    "location": "uri",
+                    "default": "events",
+                    "required": true
+                }
+            }
+        },
+        "getApps": {
+        	"extends": "getList",
+        	"parameters": {
+                "type": {
+                    "location": "uri",
+                    "default": "apps",
+                    "required": true
+                }
+            }
+        },
+        "deleteEntity": {
             "httpMethod": "DELETE",
             "uri": "{type}/{id}/{action}",
             "summary": "Deletes an entity",

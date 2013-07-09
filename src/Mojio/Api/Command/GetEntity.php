@@ -3,6 +3,7 @@
 namespace Mojio\Api\Command;
 
 use Mojio\Api\Exception\ResponseException;
+use Mojio\Api\Model\Entity;
 
 class GetEntity extends MojioCommand
 {	
@@ -12,8 +13,8 @@ class GetEntity extends MojioCommand
 	protected function process()
 	{
 		if ($this->getResponse()->isSuccessful()) {
-			$class = self::getEntityClass( $this->get('type') );
-			$this->result = new $class( $this->getResponse()->json() );
+			$returns = $this->get('returns') ? $this->get('returns') : $this->get('type');
+			$this->result = Entity::factory( $returns, $this->getResponse()->json() );
 		}else{
 			throw new ResponseException( $this->getResponse() );
 		}

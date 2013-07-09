@@ -4,8 +4,10 @@ namespace Mojio\Api\Model;
 
 use Mojio\Api\Exception\ResponseException;
 
-class Entity implements \ArrayAccess
+abstract class Entity implements \ArrayAccess
 {
+	static $type;
+	
 	public $data = array();
 	
 	public function __construct( $data )
@@ -14,6 +16,48 @@ class Entity implements \ArrayAccess
 		
 		if( !isset( $this->data['Id'] ) && isset( $this->data['_id'] ))
 			$this->data['Id'] = $this->data['_id'];
+	}
+	
+	public function setData( $data )
+	{
+		$this->data = $data;
+		
+		return $this;
+	}
+	
+	public static function getType()
+	{
+		return self::$type;
+	}
+	
+	public static function factory( $type , $data )
+	{
+		
+		
+	}
+	
+	public static function getClass( $type )
+	{
+		switch( $type ){
+			case 'user':
+			case 'users':
+				return "\\Mojio\\Api\\Model\\UserEntity";
+			case 'app':
+			case 'apps':
+				return "\\Mojio\\Api\\Model\\AppEntity";
+			case 'mojio':
+			case 'mojios':
+			case 'device':
+			case 'devices':
+				return "\\Mojio\\Api\\Model\\DeviceEntity";
+			case 'token':
+			case 'tokens':
+			case 'login':
+			case 'logins':
+				return "\\Mojio\\Api\\Model\\TokenEntity";
+			default:
+				return "\\Mojio\\Api\\Model\\Entity";
+		}
 	}
 	
 	public function __set($name, $value)
