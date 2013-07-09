@@ -30,12 +30,6 @@ abstract class Entity implements \ArrayAccess
 		return self::$type;
 	}
 	
-	public static function factory( $type , $data )
-	{
-		
-		
-	}
-	
 	public static function getClass( $type )
 	{
 		switch( $type ){
@@ -50,13 +44,27 @@ abstract class Entity implements \ArrayAccess
 			case 'device':
 			case 'devices':
 				return "\\Mojio\\Api\\Model\\DeviceEntity";
+			case 'trip':
+			case 'trips':
+				return "\\Mojio\\Api\\Model\\TripEntity";
+			case 'event':
+			case 'events':
+				return "\\Mojio\\Api\\Model\\EventEntity";
+			case 'order':
+			case 'orders':
+			case 'invoice':
+			case 'invoices':
+				return "\\Mojio\\Api\\Model\\InvoiceEntity";
+			case 'product':
+			case 'products':
+				return "\\Mojio\\Api\\Model\\ProductEntity";
 			case 'token':
 			case 'tokens':
 			case 'login':
 			case 'logins':
 				return "\\Mojio\\Api\\Model\\TokenEntity";
 			default:
-				return "\\Mojio\\Api\\Model\\Entity";
+				return null;
 		}
 	}
 	

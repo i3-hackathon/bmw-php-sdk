@@ -7,7 +7,7 @@ use Mojio\Api\Exception\ResponseException;
 use Mojio\Api\Model\Entity;
 
 class GetList extends MojioCommand
-{
+{	
 	/**
 	 * {@inheritdoc}
 	 */
@@ -16,8 +16,7 @@ class GetList extends MojioCommand
 		parent::process();
 	
 		if ($this->getResponse()->isSuccessful()) {
-			$returns = $this->get('returns') ? $this->get('returns') : $this->get('type');
-			$class = Entity::getClass( $returns );
+			$class = $this->getReturnType();
 			
 			$this->result = new ResultList( $this->getResponse()->json() , $class );
 		}else{

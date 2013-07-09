@@ -13,8 +13,8 @@ class GetEntity extends MojioCommand
 	protected function process()
 	{
 		if ($this->getResponse()->isSuccessful()) {
-			$returns = $this->get('returns') ? $this->get('returns') : $this->get('type');
-			$this->result = Entity::factory( $returns, $this->getResponse()->json() );
+			$class = $this->getReturnType();
+			$this->result = new $class( $this->getResponse()->json() );
 		}else{
 			throw new ResponseException( $this->getResponse() );
 		}
