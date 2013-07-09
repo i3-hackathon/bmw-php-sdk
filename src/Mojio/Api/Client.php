@@ -72,7 +72,7 @@ class Client extends \Guzzle\Service\Client
 		
 		if( !$client->token )
 			try {
-				$token = $client->Begin( array(
+				$token = $client->begin( array(
 					'appId' => $config->get('app_id') , 
 					'secretKey' => $config->get('secret_key')
 				));

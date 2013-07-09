@@ -112,7 +112,7 @@
             }
         },
         "setStored": {
-        	"extends": "getStore",
+        	"extends": "getStored",
             "class": "\\Mojio\\Api\\Command\\SetStored",
         	"httpMethod": "PUT",
             "parameters": {
@@ -344,6 +344,20 @@
                     "location": "uri",
                     "default": "apps",
                     "required": true
+                }
+            }
+        },
+        "getAppAdmins": {
+        	"extends": "getApps",
+        	"parameters": {
+                "action": {
+                    "location": "uri",
+                    "default": "admins",
+                    "required": true
+                },
+                "require_type": {
+                	"type": "string",
+                	"default": "users"
                 }
             }
         },
