@@ -28,7 +28,7 @@ class MojioCommand extends \Guzzle\Service\Command\OperationCommand
 		if( $entity && $entity instanceof Entity )
 		{
 			if( !$this->get('type') )
-				$this->set('type', $entity->getType() );
+				$this->set('type', $entity->getTypeUrl() );
 		
 			if( $entity->getId() )
 				$this->set('id',$entity->getId() );

@@ -4,5 +4,5 @@ namespace Mojio\Api\Model;
 
 class AppEntity extends Entity
 {
-	static $type = 'apps';
+	static $type = 'app';
 }

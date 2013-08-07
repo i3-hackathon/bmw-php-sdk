@@ -6,8 +6,6 @@ use Mojio\Api\Exception\ResponseException;
 
 abstract class Entity implements \ArrayAccess
 {
-	static $type;
-	
 	public $data = array();
 	
 	public function __construct( $data )
@@ -25,9 +23,14 @@ abstract class Entity implements \ArrayAccess
 		return $this;
 	}
 	
-	public static function getType()
+	public function getTypeUrl()
 	{
-		return self::$type;
+		return $this::$type . "s";
+	}
+	
+	public function getType()
+	{
+		return $this::$type;
 	}
 	
 	public static function getClass( $type )
@@ -63,6 +66,9 @@ abstract class Entity implements \ArrayAccess
 			case 'login':
 			case 'logins':
 				return "\\Mojio\\Api\\Model\\TokenEntity";
+			case 'subscription':
+			case 'subscriptions':
+				return "\\Mojio\\Api\\Model\\SubscriptionEntity";
 			default:
 				return null;
 		}

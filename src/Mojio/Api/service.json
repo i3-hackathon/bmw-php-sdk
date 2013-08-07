@@ -12,7 +12,7 @@
             		"location": "uri",
             		"type": "string",
             		"enum": [
-            			"mojios","users","trips","events",""
+            			"subscriptions","mojios","users","trips","events",""
             		],
             		"required": true
             	},
@@ -192,7 +192,7 @@
             		"location": "uri",
             		"type": "string",
             		"enum": [
-            			"mojios","users","trips","events",""
+            			"subscriptions","mojios","users","trips","events",""
             		],
             		"required": true
             	},
@@ -213,7 +213,7 @@
             		"location": "uri",
             		"type": "string",
             		"enum": [
-            			"mojios","users","trips","events",""
+            			"subscriptions","mojios","users","trips","events",""
             		],
             		"required": true
             	},
@@ -227,6 +227,18 @@
                 }
             }
         },
+        "subscribe": {
+        	"extends": "newEntity",
+        	
+            "class": "\\Mojio\\Api\\Command\\SaveEntity",
+        	"parameters": {
+                "type": {
+                    "location": "uri",
+                    "default": "subscriptions",
+                    "required": true
+                }
+            }
+        },
         "getList": {
         	"httpMethod": "GET",
             "uri": "{type}/{id}/{action}",
@@ -237,7 +249,7 @@
             		"location": "uri",
             		"type": "string",
             		"enum": [
-            			"mojios","users","trips","events",""
+            			"subscriptions","mojios","users","trips","events",""
             		],
             		"required": true
             	},
@@ -371,7 +383,7 @@
             		"location": "uri",
             		"type": "string",
             		"enum": [
-            			"mojios","users","trips","events",""
+            			"subscriptions","mojios","users","trips","events",""
             		],
             		"required": true
             	},

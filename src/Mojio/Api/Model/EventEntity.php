@@ -4,5 +4,5 @@ namespace Mojio\Api\Model;
 
 class EventEntity extends Entity
 {
-	static $type = 'events';
+	static $type = 'event';
 }

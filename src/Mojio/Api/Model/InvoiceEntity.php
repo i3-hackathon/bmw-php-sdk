@@ -4,5 +4,5 @@ namespace Mojio\Api\Model;
 
 class InvoiceEntity extends Entity
 {
-	static $type = 'orders';
+	static $type = 'order';
 }

@@ -4,5 +4,5 @@ namespace Mojio\Api\Model;
 
 class ProductEntity extends Entity
 {
-	static $type = 'products';
+	static $type = 'product';
 }
