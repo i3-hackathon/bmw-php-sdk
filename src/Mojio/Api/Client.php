@@ -97,4 +97,14 @@ class Client extends \Guzzle\Service\Client
 	{
 		return $this->token ? $this->token->getId() : null;
 	}
+	
+	public function isAuthenticated()
+	{
+		return $this->token && $this->token->UserId;
+	}
+	
+	public function currentUser()
+	{
+		return $this->isAuthenticated() ? $this->getUser( $this->token->UserId ) :  null;
+	}
 }
