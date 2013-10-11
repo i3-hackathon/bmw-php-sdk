@@ -79,8 +79,7 @@ class Client extends \Guzzle\Service\Client
 				
 				$client->token = $token;
 			}catch( GuzzleException $e ){
-				var_dump( $e->getMessage() );
-				die('could not connect');
+				throw $e;
 			}
 		
 		$client->getEventDispatcher()->addListener('request.before_send', function( Event $event ) {
