@@ -79,8 +79,7 @@ class Client extends \Guzzle\Service\Client
 				
 				$client->token = $token;
 			}catch( GuzzleException $e ){
-				var_dump( $e->getMessage() );
-				die('could not connect');
+				throw $e;
 			}
 		
 		$client->getEventDispatcher()->addListener('request.before_send', function( Event $event ) {
@@ -96,5 +95,15 @@ class Client extends \Guzzle\Service\Client
 	public function getTokenId()
 	{
 		return $this->token ? $this->token->getId() : null;
+	}
+	
+	public function isAuthenticated()
+	{
+		return $this->token && $this->token->UserId;
+	}
+	
+	public function currentUser()
+	{
+		return $this->isAuthenticated() ? $this->getUser( $this->token->UserId ) :  null;
 	}
 }
