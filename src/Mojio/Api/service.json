@@ -7,6 +7,7 @@
         	"httpMethod": "GET",
             "uri": "{type}/{id}/{action}",
             "summary": "Get a specific entity",
+            "class": "\\Mojio\\Api\\Command\\GetEntity",
             "parameters": {
             	"type": {
             		"location": "uri",
