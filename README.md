@@ -27,7 +27,7 @@ The client has been added to packagist under the name mojio/mojio and can be inc
     php composer.phar install
     ```
 
-3. Lastly, you need to include the Composer autolader in your bootstrap:
+3. Lastly, you need to include the Composer autoloader in your bootstrap:
 
     ```php
     require '[/path/to/vendor]/autoload.php';
@@ -36,21 +36,21 @@ The client has been added to packagist under the name mojio/mojio and can be inc
 
 From Source (GitHub)
 --------------------
-If you do not want to use Composer, will need to download or checkout the complete source off github.  You must also download or checkout [Guzzle](https://github.com/guzzle/guzzle)
+If you do not want to use Composer, you can download or checkout the complete source off github.  You must also download or checkout [Guzzle](https://github.com/guzzle/guzzle)
 
 
 Getting Started
 ===============
 
-To begin developing with our client, you will need your very own application ID and secret key.  First you will need to create an account and login to our developer center.  We recommend starting with our sandbox environment (http://sandbox.developer.moj.io/).
+To begin developing with our PHP client, you will need your very own application ID and secret key.  First you will need to create an account and login to the MOJIO developer center.  We recommend starting with our sandbox environment (http://sandbox.developer.moj.io/).
 
-Once you have logged in, you can create a new Application.  From here, you will want to copy the Application ID and the Secret Key, these will be required to initialize the MojioClient.
+Once you have logged in, create a new Application.  From here, you will want to copy the Application ID and the Secret Key, these will be required to initialize the MOJIO client
 
 
 Initializing the Client
 -----------------------
 
-To get started using the client, you must first create a new instance of the MojioClient object.  This is where you will need to pass in the Application ID and Secret Key, as well as the developer environment you are using (Sandbox, or Live).
+To get started using the client, instantiate a new instance of the MOJIO client class.  This is where you will need to pass in the Application ID and Secret Key, as well as the developer environment you are using (Sandbox, or Live).
 
 ```php
 use Mojio\Api\Client;
@@ -72,7 +72,7 @@ $client = Client::factory(array(
 Authenticate a Mojio User
 -------------------------
 
-Now that your MojioClient is associated with your app, you can get started making some calls.  However, many of our API calls also require an authorized user to be associated with the client sesion.  In order to authenticate a user, you must pass in the users name or email along with their password.
+Now that your MojioClient is associated with your app, you can get started making some API calls.  However, many of our API calls also require an authorized user to be associated with the client session.  In order to authenticate a user, you must pass in the users name or email along with their password.  If successful, all subsequent API calls will be associated with this MOJIO user's account.
 
 ```php
 // ...
@@ -90,7 +90,7 @@ $client->logout();
 Fetching Data
 -------------
 
-To retrieve a set of a particular Mojio entities, you can use the "Get" method.  The returned results will depend on what user and application your client session is authorized as. Lists of data will be returned in a paginated form.  You are able to set the page size and request a particular page.  In order to keep response times fast, it is recommended to keep the page size low.
+To retrieve a set of a particular MOJIO entities, you can use the "GET" method.  The returned results will depend on what user and application your client session is authorized as. Lists of data will be returned in a paginated form.  You are able to set the page size and request a particular page.  In order to keep response times fast, it is recommended to keep the page size low.
 
 ```php
 // ...
@@ -110,7 +110,7 @@ foreach( $results as $trip )
 Fetch a specific Entity
 -----------------------
 
-By passing in the ID of an entity (often a GUID), you can fetch just that single entity from the database.
+By passing in the ID of an entity (often a GUID), you can request a single MOJIO entity from our API.
 
 ```php
 // ...
@@ -128,7 +128,7 @@ $mojio = $client->getMojio(array(
 Update an Entity
 ----------------
 
-If you want to update and save an entity, you need to first load the entity from the API, make your changes, and then save it back.  Typically only the owner of an entity will be authorized to save changes and not all properties of an entity will be editable (for example, for an App, only the Name and Description properties can be changed).
+If you want to update and save an entity, you need to first load the entity from the API, make your changes, and then post it back.  Typically only the owner of an entity will be authorized to save changes and not all properties of an entity will be editable (for example, for an App, only the Name and Description properties can be changed).
 
 ```php
 // ...
@@ -151,7 +151,7 @@ $client->saveEntity(array(
 Get a list of child entities
 ----------------------------
 
-If you want to fetch all the entities associated with another entity, you can call the GetBy method.  For example, if you want to fetch all the events associated with a mojio device.
+If you want to fetch all the entities associated with another entity, you can call the GetBy method.  For example, if you want to fetch all the events associated with a particular MOJIO device.
 
 ```php
 use Mojio\Api\Model\DeviceEntity;
@@ -180,7 +180,7 @@ use Mojio\Api\Model\EventEntity;
 Using the Mojio Storage
 -----------------------
 
-With the Mojio API, you are able to store your own private data within our database as key value pairs.  These key value pairs will only be accessible by your application, and you can associate them with any Mojio entities (ex: Mojio Device, Application, User, Trip, Event, Invoice, Product).
+With the MOJIO API, you are able to store your own private data on our servers as key value pairs.  These key value pairs will only be accessible by your application, and you can associate them with any MOJIO entities (ex: MOJIO Device, Application, User, Trip, Event, Invoice, Product).
 
 ```php
 use Mojio\Api\Model\UserEntity;
@@ -210,7 +210,7 @@ use Mojio\Api\Model\UserEntity;
 Requesting Event Updates
 ------------------------
 
-Instead of continuously polling the API to see if any new events have come in, you can request our API to send a POST request to an endpoint of your choise any time an event is triggered.
+Instead of continuously polling the API to check for updates, you can request our API send a POST request to an endpoint of your choosing everytime certain events are received.
 
 ```php
     $mojioId = "123451234512345";
@@ -225,7 +225,7 @@ Instead of continuously polling the API to see if any new events have come in, y
     $client->newEntity( array('entity' =>$sub) );
 ```
 
-And in your "receiver.php" file you can place:
+And in your "receiver.php" file you will want to process any incoming events:
 ```php
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
