@@ -42,7 +42,7 @@ If you do not want to use Composer, will need to download or checkout the comple
 Getting Started
 ===============
 
-To begin developing with our client, you will need your very own application ID and secret key.  First you will need to create an account and login to our developer center.  We recommend starting with our sandbox environment (http://sandbox.developer.moj.io/).
+To begin developing with our client, you will need your very own application ID and secret key.  First you will need to create an account and login to our developer center.  We recommend starting with our sandbox environment (http://sandbox.api.moj.io/).
 
 Once you have logged in, you can create a new Application.  From here, you will want to copy the Application ID and the Secret Key, these will be required to initialize the MojioClient.
 
@@ -154,7 +154,7 @@ Get a list of child entities
 If you want to fetch all the entities associated with another entity, you can call the GetBy method.  For example, if you want to fetch all the events associated with a mojio device.
 
 ```php
-use Mojio\Api\Model\DeviceEntity;
+use Mojio\Api\Model\MojioEntity;
 use Mojio\Api\Model\EventEntity;
 
     // ...
@@ -162,13 +162,13 @@ use Mojio\Api\Model\EventEntity;
 	
     // Fetch mojio's events
     $events = $client->getList(array(
-        "type" => DeviceEntity::getType(),
+        "type" => MojioEntity::getType(),
         "id" => $mojioId,
         "action" => EventEntity::getType()
     ));
 	
     // Or, alternatively
-    $mojio = $client->getDevice(array( 'id' => $mojioId ));
+    $mojio = $client->getMojio(array( 'id' => $mojioId ));
     $events = $client->getList(array(
         'entity' => $mojio,
         'action' => EventEntity::getType()
@@ -210,7 +210,7 @@ use Mojio\Api\Model\UserEntity;
 Requesting Event Updates
 ------------------------
 
-Instead of continuously polling the API to see if any new events have come in, you can request our API to send a POST request to an endpoint of your choise any time an event is triggered.
+Instead of continuously polling the API to see if any new events have come in, you can request our API to send a POST request to an endpoint of your choice any time an event is triggered.
 
 ```php
     $mojioId = "123451234512345";
