@@ -61,6 +61,16 @@
         "getDevice": {
         	"extends": "getMojio"
         },
+        "getVehicle": {
+        	"extends": "getEntity",
+            "parameters": {
+                "type": {
+                    "location": "uri",
+                    "default": "vehicles",
+                    "required": true
+                }
+            }
+        },
         "getOrder": {
         	"extends": "getEntity",
             "parameters": {
@@ -330,6 +340,16 @@
         "getDevices": {
         	"extends": "getMojios"
         },
+        "getVehicles": {
+        	"extends": "getList",
+        	"parameters": {
+                "type": {
+                    "location": "uri",
+                    "default": "vehicles",
+                    "required": true
+                }
+            }
+        },
         "getProducts": {
         	"extends": "getList",
         	"parameters": {
@@ -384,7 +404,7 @@
             		"location": "uri",
             		"type": "string",
             		"enum": [
-            			"subscriptions","mojios","users","trips","events",""
+            			"subscriptions","mojios","users","trips","events","vehicles",""
             		],
             		"required": true
             	},

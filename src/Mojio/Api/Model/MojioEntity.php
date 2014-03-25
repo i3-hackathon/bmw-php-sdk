@@ -2,7 +2,7 @@
 
 namespace Mojio\Api\Model;
 
-class DeviceEntity extends Entity
+class MojioEntity extends Entity
 {
 	static $type = 'mojio';
 }

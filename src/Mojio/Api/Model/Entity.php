@@ -46,7 +46,10 @@ abstract class Entity implements \ArrayAccess
 			case 'mojios':
 			case 'device':
 			case 'devices':
-				return "\\Mojio\\Api\\Model\\DeviceEntity";
+				return "\\Mojio\\Api\\Model\\MojioEntity";
+			case 'vehicle':
+			case 'vehicles':
+				return "\\Mojio\\Api\\Model\\VehicleEntity";
 			case 'trip':
 			case 'trips':
 				return "\\Mojio\\Api\\Model\\TripEntity";
