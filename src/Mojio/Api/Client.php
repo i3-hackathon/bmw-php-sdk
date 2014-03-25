@@ -9,8 +9,8 @@ use Guzzle\Common\Event;
 
 class Client extends \Guzzle\Service\Client
 {
-	const LIVE = "https://developer.moj.io/v1";
-	const SANDBOX = "http://sandbox.developer.moj.io/v1";
+	const LIVE = "https://api.moj.io/v1";
+	const SANDBOX = "http://sandbox.api.moj.io/v1";
 	
 	/**
 	 * @var string Mojio App ID
@@ -46,7 +46,7 @@ class Client extends \Guzzle\Service\Client
 	public static function factory($config = array() )
 	{
 		$defaults = array(
-				'base_url' => '{{scheme}}://developer.moj.io/{{version}}',
+				'base_url' => '{{scheme}}://api.moj.io/{{version}}',
 				'app_id' => null,
 				'secret_key' => null,
 				'version' => 'v1'
