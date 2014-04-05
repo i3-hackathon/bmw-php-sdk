@@ -216,7 +216,7 @@ Instead of continuously polling the API to check for updates, you can request ou
     $mojioId = "123451234512345";
 
     $sub = SubscriptionEntity::factory(
-              'GPS',        // Event Type to receive
+              'IgnitionOn', // Event Type to receive
               'Mojio',      // Subscription Type
               $mojioId,     // Entity ID
               "http://my-domain-example.com/receiver.php" // Location to send events
