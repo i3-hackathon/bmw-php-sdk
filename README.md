@@ -78,7 +78,7 @@ Now that your MojioClient is associated with your app, you can get started makin
 // ...
 // Authenticate specific user
 $client->login(array(
-    'username' => 'demo@example.com',
+    'useroremail' => 'demo@example.com',
     'password' => 'mypassword',
 ));
 	

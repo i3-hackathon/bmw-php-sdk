@@ -135,9 +135,9 @@
             }
         },
     	"begin": {
-    		"httpMethod": "GET",
-            "summary": "Gets a list of users",
-            "uri": "{type}/{appId}/begin",
+    		"httpMethod": "POST",
+            "summary": "Initialize the MOJIO client by retrieving an auth token.",
+            "uri": "{type}/{appId}",
             "class": "\\Mojio\\Api\\Command\\GetEntity",
             "parameters": {
             	"type": {
@@ -171,8 +171,8 @@
             }
     	},
         "login": {
-        	"httpMethod": "GET",
-        	"uri": "{type}/{username}/setuser",
+        	"httpMethod": "POST",
+        	"uri": "{type}/user",
         	"summary": "Lookup a token",
             "class": "\\Mojio\\Api\\Command\\GetEntity",
             "parameters": {
@@ -181,7 +181,7 @@
             		"location": "uri",
             		"default": "login"
             	},
-            	"username": {
+            	"useroremail": {
             		"location": "uri",
             		"type": "string",
             		"required": true
@@ -190,6 +190,11 @@
             		"location": "query",
             		"type": "string",
             		"required": true
+            	},
+            	"minutes": {
+            		"location": "query",
+            		"type": "string",
+            		"required": false
             	}
             }
         },
