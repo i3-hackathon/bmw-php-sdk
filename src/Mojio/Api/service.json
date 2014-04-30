@@ -172,7 +172,7 @@
     	},
         "login": {
         	"httpMethod": "POST",
-        	"uri": "{type}/tmpfix/user",
+        	"uri": "{type}/user",
         	"summary": "Lookup a token",
             "class": "\\Mojio\\Api\\Command\\GetEntity",
             "parameters": {
