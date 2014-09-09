@@ -279,15 +279,15 @@
             		"type": "string",
             		"required": false
             	},
-            	"page": {
-            		"location": "query",
-            		"type": "integer",
-            		"default": 1
-           		},
-           		"pageSize": {
+            	"limit": {
             		"location": "query",
             		"type": "integer",
             		"default": 10
+           		},
+           		"offset": {
+            		"location": "query",
+            		"type": "integer",
+            		"default": 0
            		},
            		"sortBy": {
             		"location": "query",
