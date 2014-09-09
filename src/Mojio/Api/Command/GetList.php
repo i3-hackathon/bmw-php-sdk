@@ -30,7 +30,8 @@ class GetList extends MojioCommand
 	protected function validate()
 	{
 		$this->validateCriteria();
-	
+		$this->validatePage();
+		
 		parent::validate();
 	}
 	
@@ -51,6 +52,26 @@ class GetList extends MojioCommand
 			}
 			
 			$this->set('criteria', $str);
+		}
+	}
+	
+	/**
+	 * Check if criteria is an array, and convert to string if so.
+	 */
+	protected function validatePage()
+	{
+		$page = $this->get('page');
+		$pageSize = $this->get('pageSize');
+		
+		if($page > 0)
+		{
+			$pageSize = $this->get('pageSize');
+			
+			$limit = $pageSize ?  $pageSize : 10;
+			$offset = ($page-1) * $limit;
+			
+			$this->set('limit', $limit);
+			$this->set('offset', $offset);
 		}
 	}
 }
