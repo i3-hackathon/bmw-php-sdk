@@ -41,6 +41,7 @@ try {
 
 	$subscription = $client->newEntity(array(
 		'entity' => SubscriptionEntity::factory('GPS','User',$userId,"http://mojio.local/tests/receive.php")
+	));
 	
 	$results = $client->getList(array(
 			'type'=> 'events',
