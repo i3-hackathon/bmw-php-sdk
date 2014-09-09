@@ -296,6 +296,10 @@
            		"desc": {
            			"location": "query",
            			"type": "boolean"
+           		},
+           		"criteria": {
+           			"location": "query",
+           			"type": "string"
            		}
             }
         },
