@@ -13,7 +13,7 @@
             		"location": "uri",
             		"type": "string",
             		"enum": [
-            			"subscriptions","mojios","users","trips","events",""
+            			"subscriptions","mojios","users","trips","events","vehicles",""
             		],
             		"required": true
             	},
@@ -208,7 +208,7 @@
             		"location": "uri",
             		"type": "string",
             		"enum": [
-            			"subscriptions","mojios","users","trips","events",""
+            			"subscriptions","mojios","users","trips","events","vehicles",""
             		],
             		"required": true
             	},
@@ -229,7 +229,7 @@
             		"location": "uri",
             		"type": "string",
             		"enum": [
-            			"subscriptions","mojios","users","trips","events",""
+            			"subscriptions","mojios","users","trips","events","vehicles",""
             		],
             		"required": true
             	},
@@ -265,7 +265,7 @@
             		"location": "uri",
             		"type": "string",
             		"enum": [
-            			"subscriptions","mojios","users","trips","events",""
+            			"subscriptions","mojios","users","trips","events","vehicles",""
             		],
             		"required": true
             	},
