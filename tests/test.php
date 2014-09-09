@@ -45,6 +45,8 @@ try {
 	
 	$results = $client->getList(array(
 			'type'=> 'events',
+			'sortBy' => "Time",
+			'desc' => false,
 			'criteria' => array('EventType' => 'IgnitionOff')
 	));
 }
