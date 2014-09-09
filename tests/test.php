@@ -10,14 +10,14 @@ ini_set('display_errors',true);
 require '../vendor/autoload.php';
 
 $client = Client::factory(array(
-			'base_url' => "http://localhost:2006/v1",
+			'base_url' => "https://api.moj.io/v1",
 			'app_id' => $_GET['appid'],
 			'secret_key' => $_GET['secret']
 		));
 
 try {
 	$client->login(array(
-			'username' => $_GET['user'],
+			'userOrEmail' => $_GET['user'],
 			'password' => $_GET['pass'],
 			));
 	$results = $client->getList(array(
@@ -41,6 +41,10 @@ try {
 
 	$subscription = $client->newEntity(array(
 		'entity' => SubscriptionEntity::factory('GPS','User',$userId,"http://mojio.local/tests/receive.php")
+	
+	$results = $client->getList(array(
+			'type'=> 'events',
+			'criteria' => array('EventType' => 'IgnitionOff')
 	));
 }
 catch( \Guzzle\Http\Exception\ServerErrorResponseException $r )
