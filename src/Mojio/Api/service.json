@@ -294,8 +294,11 @@
             		"type": "string"
            		},
            		"desc": {
-           			"location": "query",
-           			"type": "boolean"
+           	    	"location": "query",
+           	    	"type": "string",
+           	    	"enum": [
+           	    		"true","false"
+           	    	]
            		},
            		"criteria": {
            			"location": "query",
