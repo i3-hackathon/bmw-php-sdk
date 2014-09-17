@@ -19,6 +19,7 @@ if(isset($_POST['appid']))
 
 $appId = isset($_SESSION['appId']) ? $_SESSION['appId'] : null;
 $secret = isset($_SESSION['secret']) ? $_SESSION['secret'] : null;
+$token = isset($_SESSION['token']) ? $_SESSION['token'] : null;
 
 if($appId && $secret) {
     try {
@@ -26,29 +27,35 @@ if($appId && $secret) {
             'host' => 'staging.api.moj.io',
             'app_id' => $appId,
             'secret_key' => $secret,
+            'token' => $token,
         ));
         
-        $scheme = isset($_SERVER['HTTPS']) ? 'https' : 'http';
-        $redirect = $scheme . '://' . $_SERVER['HTTP_HOST'] . strtok($_SERVER['REQUEST_URI'], '?');
-        if(!isset($_GET['code'])) {  
-            header('Location: '.$client->getAuthorizationUrl($redirect));
-            exit;
-        } else {
-            $client->authorize($redirect, $_GET['code']);
-            
-            $results = $client->getList(array(
-                'type'=> 'users'
-            ));
-            
-            foreach( $results as $user )
-            {
-                $result = $client->getEntity( array(
-                    'type' => 'users',
-                    'id' => $user['_id']
-                ));
-            
-                var_dump($result);
+        if(!$token)
+        {
+            $scheme = isset($_SERVER['HTTPS']) ? 'https' : 'http';
+            $redirect = $scheme . '://' . $_SERVER['HTTP_HOST'] . strtok($_SERVER['REQUEST_URI'], '?');
+            if(!isset($_GET['code'])) {  
+                header('Location: '.$client->getAuthorizationUrl($redirect));
+                exit;
+            } else {
+                $client->authorize($redirect, $_GET['code']);
+                
+                $_SESSION['token'] = $client->getTokenId();
             }
+        }
+        
+        $results = $client->getList(array(
+            'type'=> 'users'
+        ));
+        
+        foreach( $results as $user )
+        {
+            $result = $client->getEntity( array(
+                'type' => 'users',
+                'id' => $user['_id']
+            ));
+        
+            var_dump($result);
         }
     }
     catch( \Guzzle\Http\Exception\ServerErrorResponseException $r )

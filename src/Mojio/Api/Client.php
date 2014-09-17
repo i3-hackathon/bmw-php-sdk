@@ -119,7 +119,7 @@ class Client extends \Guzzle\Service\Client
 	        try {
 	            $token = $this->getToken(array('id' => $tokenId) );
 	            	
-	            $client->token = $token;
+	            $this->token = $token;
 	            return;
 	        }catch(GuzzleException $e ){
 	            // Token
