@@ -77,7 +77,11 @@ Now that your MojioClient is associated with your app, you can get started makin
 
 ```php
 // ...
-$redirectUri = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . strtok($_SERVER['REQUEST_URI'], '?');
+// Set the redirect URI to point to this exact same script.
+$redirectUri = (isset($_SERVER['HTTPS']) ? 'https' : 'http')
+                   . '://' . $_SERVER['HTTP_HOST'] 
+                   . strtok($_SERVER['REQUEST_URI'], '?');
+                   
 if(!isset($_GET['code'])) {
     // Initiate an OAuth request
     header('Location: '.$client->getAuthorizationUrl($redirectUri));
@@ -92,7 +96,7 @@ if(!isset($_GET['code'])) {
 $client->logout();
 ```
 
-Please note, you must add the ***$redirectUri*** to the allowed ***Redirect URIs*** in your application settings on the developer center [https://developer.moj.io/account/apps].
+Please note, you must add the ***$redirectUri*** to the allowed ***Redirect URIs*** in your application settings on the [Developer Center](https://developer.moj.io/account/apps).
 
 
 Fetching Data
