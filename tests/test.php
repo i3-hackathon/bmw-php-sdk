@@ -9,54 +9,64 @@ ini_set('display_errors',true);
 
 require '../vendor/autoload.php';
 
-$client = Client::factory(array(
-			'base_url' => "https://api.moj.io/v1",
-			'app_id' => $_GET['appid'],
-			'secret_key' => $_GET['secret']
-		));
+session_start();
 
-try {
-	$client->login(array(
-			'userOrEmail' => $_GET['user'],
-			'password' => $_GET['pass'],
-			));
-	$results = $client->getList(array(
-		'type'=> 'users'
-	));
-	$userId = null;
-
-	foreach( $results as $user )
-	{
-		$result = $client->getEntity( array(
-				'type' => 'users', 
-				'id' => $user['_id']
-		));
-		
-		$user->FirstName = "NewName";
-		
-		$userId = $user['_id'];
-	}
-	
-	$test = $client->getAppAdmins( array('id' => $_GET['appid']) );
-
-	$subscription = $client->newEntity(array(
-		'entity' => SubscriptionEntity::factory('GPS','User',$userId,"http://mojio.local/tests/receive.php")
-	));
-	
-	$results = $client->getList(array(
-			'type'=> 'events',
-			'sortBy' => "Time",
-			'desc' => false,
-			'criteria' => array('EventType' => 'IgnitionOff')
-	));
-}
-catch( \Guzzle\Http\Exception\ServerErrorResponseException $r )
+if(isset($_POST['appid']))
 {
-	var_dump( $r->getRequest() . "" );
-	var_dump( $r->getMessage() );
-	var_dump( $r->getResponse()->getMessage() );
+    $_SESSION['appId'] = $_POST['appid'];
+    $_SESSION['secret'] = $_POST['secret'];
 }
-catch( \Exception $e )
-{
-	var_dump( $e->getMessage() );
+
+$appId = isset($_SESSION['appId']) ? $_SESSION['appId'] : null;
+$secret = isset($_SESSION['secret']) ? $_SESSION['secret'] : null;
+
+if($appId && $secret) {
+    try {
+        $client = Client::factory(array(
+            'host' => 'staging.api.moj.io',
+            'app_id' => $appId,
+            'secret_key' => $secret,
+        ));
+        
+        $scheme = isset($_SERVER['HTTPS']) ? 'https' : 'http';
+        $redirect = $scheme . '://' . $_SERVER['HTTP_HOST'] . strtok($_SERVER['REQUEST_URI'], '?');
+        if(!isset($_GET['code'])) {  
+            header('Location: '.$client->getAuthorizationUrl($redirect));
+            exit;
+        } else {
+            $client->authorize($redirect, $_GET['code']);
+            
+            $results = $client->getList(array(
+                'type'=> 'users'
+            ));
+            
+            foreach( $results as $user )
+            {
+                $result = $client->getEntity( array(
+                    'type' => 'users',
+                    'id' => $user['_id']
+                ));
+            
+                var_dump($result);
+            }
+        }
+    }
+    catch( \Guzzle\Http\Exception\ServerErrorResponseException $r )
+    {
+    	var_dump( $r->getRequest() . "" );
+    	var_dump( $r->getMessage() );
+    	var_dump( $r->getResponse()->getMessage() );
+    }
+    catch( \Exception $e )
+    {
+    	var_dump($e);
+    }
 }
+
+echo <<<END
+    <form method="POST">
+        <input type="text" name="appid" value="$appId">
+        <input type="text" name="secret" value="">
+        <input type="submit">
+    </form>
+END;
