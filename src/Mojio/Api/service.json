@@ -198,7 +198,7 @@
             	}
             }
         },
-        "extend": {
+        "extendToken": {
         	"httpMethod": "POST",
         	"uri": "{type}/{id}/session",
         	"summary": "Extend a sessions expiry time",
@@ -213,7 +213,7 @@
                     "location": "uri",
                     "description": "Token ID",
                     "required": true
-                }
+                },
             	"minutes": {
             		"location": "query",
             		"type": "string",
