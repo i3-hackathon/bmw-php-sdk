@@ -94,9 +94,9 @@ class Client extends \Guzzle\Service\Client
 	public function authorize($redirect_uri, $code) {
 	    $provider = $this->getOAuthProvider($redirect_uri);
 	    
-	    $tokenId = $provider->getAccessToken('authorization_code', [
+	    $tokenId = $provider->getAccessToken(new \League\OAuth2\Client\Grant\Authorizationcode(), array(
 	       'code' => $code 
-	    ]);
+	    ));
 	    
 	    if($tokenId) {
 	        try {
