@@ -198,6 +198,30 @@
             	}
             }
         },
+        "extend": {
+        	"httpMethod": "POST",
+        	"uri": "{type}/{id}/session",
+        	"summary": "Extend a sessions expiry time",
+            "class": "\\Mojio\\Api\\Command\\GetEntity",
+            "parameters": {
+            	"type": {
+            		"type": "string",
+            		"location": "uri",
+            		"default": "login"
+            	},
+                "id": {
+                    "location": "uri",
+                    "description": "Token ID",
+                    "required": true
+                }
+            	"minutes": {
+            		"location": "query",
+            		"type": "string",
+            		"description" : "Minutes to extend a session by",
+            		"required": false
+            	}
+            }
+        },
         "saveEntity": {
         	"httpMethod": "PUT",
             "uri": "{type}/{id}/{action}",
