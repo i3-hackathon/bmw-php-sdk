@@ -46,6 +46,7 @@ class GetList extends MojioCommand
 		{
 			$str = "";
 			foreach($criteria as $key => $value) {
+			    if($str) $str .= ';';
 				if(is_array($value))
 					$value = implode(",", $value);
 				
