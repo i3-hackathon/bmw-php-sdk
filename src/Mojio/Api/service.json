@@ -13,7 +13,7 @@
             		"location": "uri",
             		"type": "string",
             		"enum": [
-            			"subscriptions","mojios","users","trips","events",""
+            			"subscriptions","mojios","users","trips","events","login","vehicles",""
             		],
             		"required": true
             	},
@@ -198,6 +198,30 @@
             	}
             }
         },
+        "extendToken": {
+        	"httpMethod": "POST",
+        	"uri": "{type}/{id}/session",
+        	"summary": "Extend a sessions expiry time",
+            "class": "\\Mojio\\Api\\Command\\GetEntity",
+            "parameters": {
+            	"type": {
+            		"type": "string",
+            		"location": "uri",
+            		"default": "login"
+            	},
+                "id": {
+                    "location": "uri",
+                    "description": "Token ID",
+                    "required": true
+                },
+            	"minutes": {
+            		"location": "query",
+            		"type": "string",
+            		"description" : "Minutes to extend a session by",
+            		"required": false
+            	}
+            }
+        },
         "saveEntity": {
         	"httpMethod": "PUT",
             "uri": "{type}/{id}/{action}",
@@ -208,7 +232,7 @@
             		"location": "uri",
             		"type": "string",
             		"enum": [
-            			"subscriptions","mojios","users","trips","events",""
+            			"subscriptions","mojios","users","trips","events","login","vehicles",""
             		],
             		"required": true
             	},
@@ -229,7 +253,7 @@
             		"location": "uri",
             		"type": "string",
             		"enum": [
-            			"subscriptions","mojios","users","trips","events",""
+            			"subscriptions","mojios","users","trips","events","login","vehicles",""
             		],
             		"required": true
             	},
@@ -265,7 +289,7 @@
             		"location": "uri",
             		"type": "string",
             		"enum": [
-            			"subscriptions","mojios","users","trips","events",""
+            			"subscriptions","mojios","users","trips","events","login","vehicles",""
             		],
             		"required": true
             	},
@@ -279,23 +303,30 @@
             		"type": "string",
             		"required": false
             	},
-            	"page": {
-            		"location": "query",
-            		"type": "integer",
-            		"default": 1
-           		},
-           		"pageSize": {
+            	"limit": {
             		"location": "query",
             		"type": "integer",
             		"default": 10
+           		},
+           		"offset": {
+            		"location": "query",
+            		"type": "integer",
+            		"default": 0
            		},
            		"sortBy": {
             		"location": "query",
             		"type": "string"
            		},
            		"desc": {
+           	    	"location": "query",
+           	    	"type": "string",
+           	    	"enum": [
+           	    		"true","false"
+           	    	]
+           		},
+           		"criteria": {
            			"location": "query",
-           			"type": "boolean"
+           			"type": "string"
            		}
             }
         },
@@ -409,7 +440,7 @@
             		"location": "uri",
             		"type": "string",
             		"enum": [
-            			"subscriptions","mojios","users","trips","events","vehicles",""
+            			"subscriptions","mojios","users","trips","events","login","vehicles",""
             		],
             		"required": true
             	},

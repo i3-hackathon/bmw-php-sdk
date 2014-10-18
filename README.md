@@ -15,7 +15,7 @@ The client has been added to packagist under the name mojio/mojio and can be inc
     ```json
     {
         "require": {
-          "mojio/mojio": "dev-master"
+          "mojio/mojio": "~1.0"
         }
     }
     ```
@@ -69,23 +69,44 @@ $client = Client::factory(array(
 // ...
 ```
 
+
 Authenticate a Mojio User
 -------------------------
 
-Now that your MojioClient is associated with your app, you can get started making some API calls.  However, many of our API calls also require an authorized user to be associated with the client session.  In order to authenticate a user, you must pass in the users name or email along with their password.  If successful, all subsequent API calls will be associated with this MOJIO user's account.
+Now that your MojioClient is associated with your app, you can get started making some API calls.  However, many of our API calls also require an authorized user to be associated with the client session.  A user can grant you access using our OAuth2 service, and client calls.
 
 ```php
 // ...
+<<<<<<< HEAD
 // Authenticate specific user
 $client->login(array(
     'userOrEmail' => 'demo@example.com',
     'password' => 'mypassword',
 ));
 	
+=======
+// Set the redirect URI to point to this exact same script.
+$redirectUri = (isset($_SERVER['HTTPS']) ? 'https' : 'http')
+                   . '://' . $_SERVER['HTTP_HOST'] 
+                   . strtok($_SERVER['REQUEST_URI'], '?');
+                   
+if(!isset($_GET['code'])) {
+    // Initiate an OAuth request
+    header('Location: '.$client->getAuthorizationUrl($redirectUri));
+    exit;
+} else {
+    // Handle the OAuth response
+    $client->authorize($redirectUri, $_GET['code']);
+}
+
+>>>>>>> da42bcc956e02bd4a8d9327ba5f8bee5528155a6
 // ...
 // Logout user.
 $client->logout();
 ```
+
+Please note, you must add the ***$redirectUri*** to the allowed ***Redirect URIs*** in your application settings on the [Developer Center](https://developer.moj.io/account/apps).
+
 
 Fetching Data
 -------------
@@ -114,7 +135,7 @@ By passing in the ID of an entity (often a GUID), you can request a single MOJIO
 
 ```php
 // ...
-$mojioId = "123451234512345";
+$mojioId = "0a5123a0-7e70-12d1-a5k6-28db18c10200";
 	
 // Fetch mojio from API
 $mojio = $client->getMojio(array(
@@ -158,7 +179,7 @@ use Mojio\Api\Model\MojioEntity;
 use Mojio\Api\Model\EventEntity;
 
     // ...
-    $mojioId = "123451234512345";
+    $mojioId = "0a5123a0-7e70-12d1-a5k6-28db18c10200";
 	
     // Fetch mojio's events
     $events = $client->getList(array(
@@ -213,7 +234,7 @@ Requesting Event Updates
 Instead of continuously polling the API to check for updates, you can request our API send a POST request to an endpoint of your choosing everytime certain events are received.
 
 ```php
-    $mojioId = "123451234512345";
+    $mojioId = "0a5123a0-7e70-12d1-a5k6-28db18c10200";
 
     $sub = SubscriptionEntity::factory(
               'IgnitionOn', // Event Type to receive
