@@ -44,6 +44,21 @@ if($appId && $secret) {
             }
         }
         
+        $vehicles = $client->getVehicles();
+
+        if(count($vehicles) > 0) {
+            $vehicle = $vehicles->current();
+            $heartbeats = $client->getList(array(
+                    'type'=> 'events',
+                    'criteria' => array(
+                            'EventType' => 'HeartBeat',
+                            'VehicleId' => $vehicle->_id
+                    ),
+            ));
+            
+            var_dump($heartbeats);
+        }
+        
         $results = $client->getList(array(
             'type'=> 'users'
         ));
