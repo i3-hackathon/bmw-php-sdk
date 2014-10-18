@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a1670112-ddce-4089-a094-62dd3170697b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="a1670112-ddce-4089-a094-62dd3170697b" name="Default" comment="" />
     <ignored path="mojio-php-client.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -80,10 +77,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="test.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/test.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="13" selection-start="328" selection-end="328" vertical-scroll-proportion="0.45535713" vertical-offset="0" max-vertical-offset="885">
+            <state line="10" column="0" selection-start="160" selection-end="160" vertical-scroll-proportion="-5.625" vertical-offset="0" max-vertical-offset="1260">
               <folding />
             </state>
           </provider>
@@ -98,10 +95,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Client.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Client.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Mojio/Api/Client.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="27" selection-start="878" selection-end="878" vertical-scroll-proportion="-0.9" vertical-offset="525" max-vertical-offset="1665">
+            <state line="154" column="5" selection-start="4019" selection-end="4019" vertical-scroll-proportion="0.670412" vertical-offset="1907" max-vertical-offset="2475">
               <folding />
             </state>
           </provider>
@@ -110,8 +107,10 @@
       <file leaf-file-name="service.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Mojio/Api/service.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="172" column="9" selection-start="4846" selection-end="4846" vertical-scroll-proportion="-3.0833333" vertical-offset="2506" max-vertical-offset="6510">
-              <folding />
+            <state line="172" column="9" selection-start="4865" selection-end="4865" vertical-scroll-proportion="-3.0833333" vertical-offset="2506" max-vertical-offset="6975">
+              <folding>
+                <marker date="1413660071000" expanded="true" signature="5225:6031" placeholder="{&quot;location&quot;: &quot;query&quot;...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -130,8 +129,8 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/Mojio/Api/service.json" />
-        <option value="$PROJECT_DIR$/tests/test.php" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/tests/test.php" />
       </list>
     </option>
   </component>
@@ -197,6 +196,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mojio-php-client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mojio-php-client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Mojio" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -513,8 +530,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Mojio/Api/service.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="172" column="9" selection-start="4846" selection-end="4846" vertical-scroll-proportion="-3.0833333" vertical-offset="2506" max-vertical-offset="6510">
-          <folding />
+        <state line="172" column="9" selection-start="4865" selection-end="4865" vertical-scroll-proportion="-3.0833333" vertical-offset="2506" max-vertical-offset="6975">
+          <folding>
+            <marker date="1413660071000" expanded="true" signature="5225:6031" placeholder="{&quot;location&quot;: &quot;query&quot;...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -546,13 +565,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Mojio/Api/Client.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="27" selection-start="878" selection-end="878" vertical-scroll-proportion="-0.9" vertical-offset="525" max-vertical-offset="1665">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Mojio/Api/Command/MojioCommand.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="54" selection-start="658" selection-end="659" vertical-scroll-proportion="-8.58" vertical-offset="21" max-vertical-offset="705">
@@ -576,7 +588,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="328" selection-end="328" vertical-scroll-proportion="0.45535713" vertical-offset="0" max-vertical-offset="885">
+        <state line="10" column="0" selection-start="160" selection-end="160" vertical-scroll-proportion="-5.625" vertical-offset="0" max-vertical-offset="1260">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Mojio/Api/Client.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="154" column="5" selection-start="4019" selection-end="4019" vertical-scroll-proportion="0.670412" vertical-offset="1907" max-vertical-offset="2475">
           <folding />
         </state>
       </provider>
