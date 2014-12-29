@@ -7,7 +7,7 @@
     "require": {
         "php": ">=5.3.3",
         "guzzle/guzzle": "~3.7.0",
-        "league/oauth2-client": "~0.3"
+        "league/oauth2-client": "0.6.0"
     },
     "suggest": {
         "doctrine/cache": "Adds support for caching of credentials and responses",
