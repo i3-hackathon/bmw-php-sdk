@@ -2,10 +2,10 @@
 
 namespace Mojio\OAuth2\Provider;
 
-use League\OAuth2\Client\Provider\IdentityProvider;
+use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Provider\User;
 
-class Mojio extends IdentityProvider
+class Mojio extends AbstractProvider
 {
     public $scopeSeparator = ' ';
 
