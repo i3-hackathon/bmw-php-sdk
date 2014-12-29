@@ -10,7 +10,7 @@ use Guzzle\Common\Event;
 class Client extends \Guzzle\Service\Client
 {
 	const LIVE = "https://api.moj.io/v1";
-	const SANDBOX = "https://sandbox.api.moj.io/v1";
+	const SANDBOX = "https://api.moj.io/v1";
 	
 	/**
 	 * @var string Mojio App ID
