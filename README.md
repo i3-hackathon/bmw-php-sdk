@@ -11,13 +11,13 @@ Installation
 Using Composer (recommended)
 ----------------------------
 
-The client has been added to packagist under the name mojio/mojio and can be included in your project using [Composer](http://getcomposer.org/).
+The client has been added to packagist under the name i3-hackathon/bmw-php-sdk and can be included in your project using [Composer](http://getcomposer.org/).
 
-1. First you will need to add "mojio/mojio" as a dependency in your composer.json file (currently only the dev-master is available, more stable versioning coming soon):
+1. First you will need to add "i3-hackathon/bmw-php-sdk" as a dependency in your composer.json file (currently only the dev-master is available, more stable versioning coming soon):
     ```json
     {
         "require": {
-          "mojio/mojio": "~1.0"
+          "i3-hackathon/bmw-php-sdk": "~1.0"
         }
     }
     ```
@@ -63,7 +63,7 @@ $appId = "{APPID}";
 $secretKey = "{SecretKey}";
 
 $client = Client::factory(array(
-        'base_url' => Client::SANDBOX,  // or Client::LIVE
+        'base_url' => Client::LIVE,
         'app_id' => $appId,
         'secret_key' => $secretKey
 ));
