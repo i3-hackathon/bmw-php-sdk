@@ -1,7 +1,7 @@
 {
-    "name": "Mojio",
+    "name": "BMW",
     "apiVersion": "2013-07-03",
-    "description": "Mojio API",
+    "description": "BMW API",
     "operations": {
         "getEntity": {
         	"httpMethod": "GET",

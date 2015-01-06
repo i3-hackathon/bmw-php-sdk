@@ -1,13 +1,13 @@
 {
-	"name": "mojio/mojio",
+	"name": "i3-hackathon/bmw-php-sdk",
     "type": "library",
-    "description": "PHP client to login and access the Mojio API",
+    "description": "PHP client to login and access the BMW API",
     "keywords": ["api","mojio","client","guzzle"],
-    "homepage": "http://github.com/mojio/mojio-php-client",
+    "homepage": "https://github.com/i3-hackathon/bmw-php-sdk",
     "require": {
         "php": ">=5.3.3",
         "guzzle/guzzle": "~3.7.0",
-        "league/oauth2-client": "~0.3"
+        "league/oauth2-client": "0.6.0"
     },
     "suggest": {
         "doctrine/cache": "Adds support for caching of credentials and responses",
