@@ -52,7 +52,7 @@ Once you have logged in, you can create a new Application.  From here, you will 
 Initializing the Client
 -----------------------
 
-To get started using the client, instantiate a new instance of the MOJIO client class.  This is where you will need to pass in the Application ID and Secret Key, as well as the developer environment you are using (Sandbox, or Live).
+To get started using the client, instantiate a new instance of the BMW client class.  This is where you will need to pass in the Application ID and Secret Key, as well as the developer environment you are using (in this case the hackthedrive api endpoint data.api.hackthedrive.com).
 
 ```php
 use Mojio\Api\Client;
