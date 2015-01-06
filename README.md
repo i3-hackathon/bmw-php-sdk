@@ -1,4 +1,4 @@
-**NOTICE:** This fork is modified to work in conjunction with the [BMW i3 Hackathon developer center](https://bmw.developer.moj.io/) ONLY.  If you are not apart of the BMW i3 hackathon, please refer to [mojio-php-client](https://github.com/mojio/mojio-php-client) project instead.
+**NOTICE:** This fork is modified to work in conjunction with the [BMW i3 Hackathon developer center](https://data.hackthedrive.com/) ONLY.  If you are not apart of the BMW i3 hackathon, please refer to [mojio-php-client](https://github.com/mojio/mojio-php-client) project instead.
 
 Mojio.Client
 ============
@@ -44,7 +44,7 @@ If you do not want to use Composer, you can download or checkout the complete so
 Getting Started
 ===============
 
-To begin developing with our PHP client, you will need your very own application ID and secret key.  First you will need to create an account and login to the MOJIO developer center.  We recommend starting with our sandbox environment (http://sandbox.developer.moj.io/).
+To begin developing with our PHP client, you will need your very own application ID and secret key.  First you will need to create an account and login to the [BMW developer center](https://data.hackthedrive.com/).
 
 Once you have logged in, you can create a new Application.  From here, you will want to copy the Application ID and the Secret Key, these will be required to initialize the MOJIO client
 
@@ -107,7 +107,7 @@ if(!isset($_GET['code'])) {
 $client->logout();
 ```
 
-Please note, you must add the ***$redirectUri*** to the allowed ***Redirect URIs*** in your application settings on the [Developer Center](https://developer.moj.io/account/apps).
+Please note, you must add the ***$redirectUri*** to the allowed ***Redirect URIs*** in your application settings on the [Developer Center](https://data.hackthedrive.com/account/apps).
 
 
 Fetching Data

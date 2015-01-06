@@ -9,8 +9,8 @@ use Guzzle\Common\Event;
 
 class Client extends \Guzzle\Service\Client
 {
-	const LIVE = "https://api.moj.io/v1";
-	const SANDBOX = "https://sandbox.api.moj.io/v1";
+	const LIVE = "https://data.api.hackthedrive.com/v1";
+	const SANDBOX = "https://data.api.hackthedrive.com/v1";
 	
 	/**
 	 * @var string Mojio App ID
@@ -36,7 +36,7 @@ class Client extends \Guzzle\Service\Client
 	 * Factory method to create a new Mojio client
 	 *
 	 * @param array|Collection $config Configuration data. Array keys:
-	 *    host - Base URL host.  Default: api.moj.io
+	 *    host - Base URL host.  Default: data.api.hackthedrive.com
 	 *    base_url - Base URL of web service.  Default: {{scheme}}://{{host}}/{{version}}
 	 *    app_id - Mojio App ID
 	 *    secret_key - Mojio App Secret Key
@@ -48,7 +48,7 @@ class Client extends \Guzzle\Service\Client
 	{
 		$defaults = array(
 		        'scheme' => 'https',
-		        'host' => 'api.moj.io',
+		        'host' => 'data.api.hackthedrive.com',
 				'base_url' => '{scheme}://{host}/{version}',
 		        'oauth_base_url' => '{scheme}://{host}/oauth2',
 				'app_id' => null,
