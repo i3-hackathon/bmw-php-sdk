@@ -1,3 +1,5 @@
+**NOTICE:** This fork is modified to work in conjunction with the [BMW i3 Hackathon developer center](https://bmw.developer.moj.io/) ONLY.  If you are not apart of the BMW i3 hackathon, please refer to [mojio-php-client](https://github.com/mojio/mojio-php-client) project instead.
+
 Mojio.Client
 ============
 
