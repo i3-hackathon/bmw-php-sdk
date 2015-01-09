@@ -44,7 +44,7 @@ If you do not want to use Composer, you can download or checkout the complete so
 Getting Started
 ===============
 
-To begin developing with our PHP client, you will need your very own application ID and secret key.  First you will need to create an account and login to the [BMW developer center](https://data.hackthedrive.com/).
+To begin developing with our PHP client, you will need your very own application ID and secret key.  First you will need to create an account and login to the [BMW developer center](http://data.hackthedrive.com/).
 
 Once you have logged in, you can create a new Application.  From here, you will want to copy the Application ID and the Secret Key, these will be required to initialize the MOJIO client
 
@@ -107,7 +107,7 @@ if(!isset($_GET['code'])) {
 $client->logout();
 ```
 
-Please note, you must add the ***$redirectUri*** to the allowed ***Redirect URIs*** in your application settings on the [Developer Center](https://data.hackthedrive.com/account/apps).
+Please note, you must add the ***$redirectUri*** to the allowed ***Redirect URIs*** in your application settings on the [Developer Center](http://data.hackthedrive.com/account/apps).
 
 
 Fetching Data
